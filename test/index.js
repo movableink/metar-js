@@ -140,6 +140,8 @@ exports.testCloudsParsing = function(test) {
   test.equal(egll2.clouds[0].code, 'FEW');
   test.equal(egll2.clouds[0].base, 24);
 
+  test.equal(ksaw.clouds[0].code, 'SKC');
+
   test.done();
 };
 
