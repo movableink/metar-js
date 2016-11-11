@@ -8,6 +8,7 @@ var uuww = metar.parseMetar('UUWW 081400Z 19003MPS CAVOK 05/02 Q1012 19000070 NO
 var uudd = metar.parseMetar('UUDD 081400Z 25002MPS 220V300 CAVOK 05/02 Q1012 32010095 82010095 NOSIG');
 var egll1 = metar.parseMetar('EGLL 101350Z AUTO 27012KT 9999 SCT029/// SCT044/// //////CB 11/06 Q1006 NOSIG');
 var egll2 = metar.parseMetar('EGLL 101250Z AUTO 28009KT 9999 FEW024 11/07 Q1006 NOSIG');
+var ksaw = metar.parseMetar('KSAW 110145Z 33013KT 10SM SKC 10/03 A2987');
 
 exports.testMessageTypeParsing = function(test) {
   test.equal(umms.type, 'METAR');
@@ -18,6 +19,7 @@ exports.testMessageTypeParsing = function(test) {
   test.equal(uudd.type, 'METAR');
   test.equal(egll1.type, 'METAR');
   test.equal(egll2.type, 'METAR');
+  test.equal(ksaw.type, 'METAR');
   test.done();
 };
 
