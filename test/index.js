@@ -9,6 +9,7 @@ var uudd = metar.parseMetar('UUDD 081400Z 25002MPS 220V300 CAVOK 05/02 Q1012 320
 var egll1 = metar.parseMetar('EGLL 101350Z AUTO 27012KT 9999 SCT029/// SCT044/// //////CB 11/06 Q1006 NOSIG');
 var egll2 = metar.parseMetar('EGLL 101250Z AUTO 28009KT 9999 FEW024 11/07 Q1006 NOSIG');
 var ksaw = metar.parseMetar('KSAW 110145Z 33013KT 10SM SKC 10/03 A2987');
+var cylw = metar.parseMetar('CYLW 110252Z AUTO VRB02KT 6SM BR CLR 05/04 A3015 RMK SLP222');
 
 exports.testMessageTypeParsing = function(test) {
   test.equal(umms.type, 'METAR');
@@ -20,6 +21,7 @@ exports.testMessageTypeParsing = function(test) {
   test.equal(egll1.type, 'METAR');
   test.equal(egll2.type, 'METAR');
   test.equal(ksaw.type, 'METAR');
+  test.equal(cylw.type, 'METAR');
   test.done();
 };
 
@@ -32,6 +34,8 @@ exports.testAirportCodeParsing = function(test) {
   test.equal(uudd.airport, 'UUDD');
   test.equal(egll1.airport, 'EGLL');
   test.equal(egll2.airport, 'EGLL');
+  test.equal(ksaw.airport, 'KSAW');
+  test.equal(cylw.airport, 'CYLW');
   test.done();
 };
 
@@ -106,6 +110,9 @@ exports.testWeatherParsing = function(test) {
   test.equal(uuww.weather, undefined);
   test.equal(uudd.weather, undefined);
 
+  test.equal(cylw.weather.length, 1);
+  test.equal(cylw.weather[0].condition, 'BR');
+
   test.done();
 };
 
@@ -132,15 +139,21 @@ exports.testCloudsParsing = function(test) {
   test.equal(uuww.clouds, undefined);
   test.equal(uudd.clouds, undefined);
 
+  test.equal(egll1.clouds.length, 2);
   test.equal(egll1.clouds[0].code, 'SCT');
   test.equal(egll1.clouds[0].base, 29);
   test.equal(egll1.clouds[1].code, 'SCT');
   test.equal(egll1.clouds[1].base, 44);
 
+  test.equal(egll2.clouds.length, 1);
   test.equal(egll2.clouds[0].code, 'FEW');
   test.equal(egll2.clouds[0].base, 24);
 
+  test.equal(ksaw.clouds.length, 1);
   test.equal(ksaw.clouds[0].code, 'SKC');
+
+  test.equal(cylw.clouds.length, 1);
+  test.equal(cylw.clouds[0].code, 'CLR');
 
   test.done();
 };
