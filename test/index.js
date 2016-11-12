@@ -10,6 +10,7 @@ var egll1 = metar.parseMetar('EGLL 101350Z AUTO 27012KT 9999 SCT029/// SCT044///
 var egll2 = metar.parseMetar('EGLL 101250Z AUTO 28009KT 9999 FEW024 11/07 Q1006 NOSIG');
 var ksaw = metar.parseMetar('KSAW 110145Z 33013KT 10SM SKC 10/03 A2987');
 var cylw = metar.parseMetar('CYLW 110252Z AUTO VRB02KT 6SM BR CLR 05/04 A3015 RMK SLP222');
+var k2v5 = metar.parseMetar('K2V5 122155Z AUTO 19013G19KT 10SM OVC002 20/M02 A3011 RMK AO2');
 
 exports.testMessageTypeParsing = function(test) {
   test.equal(umms.type, 'METAR');
@@ -22,6 +23,7 @@ exports.testMessageTypeParsing = function(test) {
   test.equal(egll2.type, 'METAR');
   test.equal(ksaw.type, 'METAR');
   test.equal(cylw.type, 'METAR');
+  test.equal(k2v5.type, 'METAR');
   test.done();
 };
 
@@ -36,6 +38,7 @@ exports.testAirportCodeParsing = function(test) {
   test.equal(egll2.airport, 'EGLL');
   test.equal(ksaw.airport, 'KSAW');
   test.equal(cylw.airport, 'CYLW');
+  test.equal(k2v5.airport, 'K2V5');
   test.done();
 };
 
