@@ -11,6 +11,7 @@ var egll2 = metar.parseMetar('EGLL 101250Z AUTO 28009KT 9999 FEW024 11/07 Q1006 
 var ksaw = metar.parseMetar('KSAW 110145Z 33013KT 10SM SKC 10/03 A2987');
 var cylw = metar.parseMetar('CYLW 110252Z AUTO VRB02KT 6SM BR CLR 05/04 A3015 RMK SLP222');
 var k2v5 = metar.parseMetar('K2V5 122155Z AUTO 19013G19KT 10SM OVC002 20/M02 A3011 RMK AO2');
+var mmpg = metar.parseMetar('MMPG 122040 30005KT 8SM SCT030 BKN120 23/15 A3020 RMK 8/570 HZY');
 
 exports.testMessageTypeParsing = function(test) {
   test.equal(umms.type, 'METAR');
@@ -24,6 +25,7 @@ exports.testMessageTypeParsing = function(test) {
   test.equal(ksaw.type, 'METAR');
   test.equal(cylw.type, 'METAR');
   test.equal(k2v5.type, 'METAR');
+  test.equal(mmpg.type, 'METAR');
   test.done();
 };
 
@@ -39,6 +41,7 @@ exports.testAirportCodeParsing = function(test) {
   test.equal(ksaw.airport, 'KSAW');
   test.equal(cylw.airport, 'CYLW');
   test.equal(k2v5.airport, 'K2V5');
+  test.equal(mmpg.airport, 'MMPG');
   test.done();
 };
 
@@ -50,6 +53,10 @@ exports.testTimestampParsing = function(test) {
   test.equal(ummg.day, 8);
   test.equal(ummg.hour, 13);
   test.equal(umms.min, 0);
+
+  test.equal(mmpg.day, 12);
+  test.equal(mmpg.hour, 20);
+  test.equal(mmpg.min, 40);
 
   test.done();
 };
@@ -185,6 +192,9 @@ exports.testTemperatureParsing = function(test) {
 
   test.equal(egll2.temperature, 11);
   test.equal(egll2.dewPoint, 7);
+
+  test.equal(mmpg.temperature, 23);
+  test.equal(mmpg.dewPoint, 15);
 
   test.done();
 };
